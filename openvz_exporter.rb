@@ -1,3 +1,5 @@
+#!/opt/rbenv/shims/ruby
+
 require 'sinatra'
 require 'json'
 
