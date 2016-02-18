@@ -8,7 +8,7 @@ set :port, 9119
 
 class OpenVZPrometheus
   def vzlist
-    JSON.parse(`vzlist -a -o hostname,ip,laverage -j`)
+    JSON.parse(`vzlist -o hostname,ip,laverage -j`)
   end
 
   def to_prometheus(hostname, ip, value)
