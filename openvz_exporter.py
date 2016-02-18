@@ -6,7 +6,7 @@ from flask import Flask
 app = Flask(__name__)
 
 def vzlist():
-    command = "vzlist -a -o hostname,ip,laverage -j"
+    command = "vzlist -o hostname,ip,laverage -j"
     p = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
     return p.communicate()[0]
 
