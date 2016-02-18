@@ -11,7 +11,7 @@ def vzlist():
     return p.communicate()[0]
 
 def to_prometheus(hostname, ip, value):
-    return 'node_openvz_laverage{hostname="%s", ip="%s"} %s' % (hostname, ip, value)
+    return 'node_openvz_laverage{hostname="%s", ip="%s"} %s\n' % (hostname, ip, value)
 
 @app.route("/metrics")
 def metrics():
@@ -19,7 +19,7 @@ def metrics():
     for vz in json.loads(vzlist()):
         output.append(to_prometheus(vz['hostname'], vz['ip'][0], vz['laverage'][0]))
 
-    return "\n".join(output), 200, {'Content-type': 'text/plain'}
+    return "".join(output), 200, {'Content-type': 'text/plain'}
 
 if __name__ == "__main__":
     app.run(host='::', port=9119)
